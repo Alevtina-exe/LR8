@@ -1,0 +1,38 @@
+[
+{
+  "directory": "/home/darya/Документы/453502/ОАиП/LR8/Task_2/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/Task_2.dir/elasticsearch.cpp.o -c /home/darya/Документы/453502/ОАиП/LR8/Task_2/elasticsearch.cpp",
+  "file": "/home/darya/Документы/453502/ОАиП/LR8/Task_2/elasticsearch.cpp",
+  "output": "CMakeFiles/Task_2.dir/elasticsearch.cpp.o"
+},
+{
+  "directory": "/home/darya/Документы/453502/ОАиП/LR8/Task_2/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/Task_2.dir/filework.cpp.o -c /home/darya/Документы/453502/ОАиП/LR8/Task_2/filework.cpp",
+  "file": "/home/darya/Документы/453502/ОАиП/LR8/Task_2/filework.cpp",
+  "output": "CMakeFiles/Task_2.dir/filework.cpp.o"
+},
+{
+  "directory": "/home/darya/Документы/453502/ОАиП/LR8/Task_2/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/Task_2.dir/ivalidation.cpp.o -c /home/darya/Документы/453502/ОАиП/LR8/Task_2/ivalidation.cpp",
+  "file": "/home/darya/Документы/453502/ОАиП/LR8/Task_2/ivalidation.cpp",
+  "output": "CMakeFiles/Task_2.dir/ivalidation.cpp.o"
+},
+{
+  "directory": "/home/darya/Документы/453502/ОАиП/LR8/Task_2/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/Task_2.dir/main.cpp.o -c /home/darya/Документы/453502/ОАиП/LR8/Task_2/main.cpp",
+  "file": "/home/darya/Документы/453502/ОАиП/LR8/Task_2/main.cpp",
+  "output": "CMakeFiles/Task_2.dir/main.cpp.o"
+},
+{
+  "directory": "/home/darya/Документы/453502/ОАиП/LR8/Task_2/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/Task_2.dir/solution.cpp.o -c /home/darya/Документы/453502/ОАиП/LR8/Task_2/solution.cpp",
+  "file": "/home/darya/Документы/453502/ОАиП/LR8/Task_2/solution.cpp",
+  "output": "CMakeFiles/Task_2.dir/solution.cpp.o"
+},
+{
+  "directory": "/home/darya/Документы/453502/ОАиП/LR8/Task_2/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/Task_2.dir/struct_funcs.cpp.o -c /home/darya/Документы/453502/ОАиП/LR8/Task_2/struct_funcs.cpp",
+  "file": "/home/darya/Документы/453502/ОАиП/LR8/Task_2/struct_funcs.cpp",
+  "output": "CMakeFiles/Task_2.dir/struct_funcs.cpp.o"
+}
+]

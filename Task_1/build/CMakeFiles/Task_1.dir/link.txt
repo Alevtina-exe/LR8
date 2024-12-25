@@ -1,0 +1,1 @@
+/usr/bin/c++ -g CMakeFiles/Task_1.dir/ivalidation.cpp.o CMakeFiles/Task_1.dir/main.cpp.o CMakeFiles/Task_1.dir/struct_funcs.cpp.o -o Task_1 

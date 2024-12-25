@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/Task_1.dir/ivalidation.cpp.o CMakeFiles/Task_1.dir/main.cpp.o CMakeFiles/Task_1.dir/struct_funcs.cpp.o CMakeFiles/Task_1.dir/filework.cpp.o CMakeFiles/Task_1.dir/elasticsearch.cpp.o -o Task_1  /usr/lib/x86_64-linux-gnu/libcurl.so 

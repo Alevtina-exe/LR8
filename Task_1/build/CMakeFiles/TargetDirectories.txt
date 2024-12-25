@@ -1,0 +1,3 @@
+/home/darya/Документы/453502/ОАиП/LR8/Task_1/build/CMakeFiles/Task_1.dir
+/home/darya/Документы/453502/ОАиП/LR8/Task_1/build/CMakeFiles/edit_cache.dir
+/home/darya/Документы/453502/ОАиП/LR8/Task_1/build/CMakeFiles/rebuild_cache.dir

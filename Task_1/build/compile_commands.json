@@ -1,0 +1,20 @@
+[
+{
+  "directory": "/home/darya/Документы/453502/ОАиП/LR8/Task_1/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/Task_1.dir/ivalidation.cpp.o -c /home/darya/Документы/453502/ОАиП/LR8/Task_1/ivalidation.cpp",
+  "file": "/home/darya/Документы/453502/ОАиП/LR8/Task_1/ivalidation.cpp",
+  "output": "CMakeFiles/Task_1.dir/ivalidation.cpp.o"
+},
+{
+  "directory": "/home/darya/Документы/453502/ОАиП/LR8/Task_1/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/Task_1.dir/main.cpp.o -c /home/darya/Документы/453502/ОАиП/LR8/Task_1/main.cpp",
+  "file": "/home/darya/Документы/453502/ОАиП/LR8/Task_1/main.cpp",
+  "output": "CMakeFiles/Task_1.dir/main.cpp.o"
+},
+{
+  "directory": "/home/darya/Документы/453502/ОАиП/LR8/Task_1/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/Task_1.dir/struct_funcs.cpp.o -c /home/darya/Документы/453502/ОАиП/LR8/Task_1/struct_funcs.cpp",
+  "file": "/home/darya/Документы/453502/ОАиП/LR8/Task_1/struct_funcs.cpp",
+  "output": "CMakeFiles/Task_1.dir/struct_funcs.cpp.o"
+}
+]
