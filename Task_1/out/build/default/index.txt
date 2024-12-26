@@ -50,11 +50,18 @@ curl -X PUT "http://localhost:9200/quittance" -H 'Content-Type: application/json
         "search_analyzer": "standard"
       },
       "date": {
-        "type": "text"
+        "type": "date"
       },
       "status": {
         "type": "boolean"
+      },
+      "date_txt": {
+        "type": "text",
+        "analyzer": "partial_match_analyzer",
+        "search_analyzer": "standard"
       }
     }
   }
 }'
+
+curl -X DELETE "http://localhost:9200/quittance"

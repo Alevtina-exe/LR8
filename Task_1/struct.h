@@ -1,4 +1,13 @@
 #pragma once
+#include <stdio.h>
+#include <iostream>
+#include <cstring>
+#include <fstream>
+#include <curl/curl.h>
+#include <algorithm>
+
+extern int size;
+extern bool efile, file;
 
 typedef struct quittance {
     char device[200];

@@ -25,12 +25,6 @@
 },
 {
   "directory": "/home/darya/Документы/453502/ОАиП/LR8/Task_2/build",
-  "command": "/usr/bin/c++   -g -o CMakeFiles/Task_2.dir/solution.cpp.o -c /home/darya/Документы/453502/ОАиП/LR8/Task_2/solution.cpp",
-  "file": "/home/darya/Документы/453502/ОАиП/LR8/Task_2/solution.cpp",
-  "output": "CMakeFiles/Task_2.dir/solution.cpp.o"
-},
-{
-  "directory": "/home/darya/Документы/453502/ОАиП/LR8/Task_2/build",
   "command": "/usr/bin/c++   -g -o CMakeFiles/Task_2.dir/struct_funcs.cpp.o -c /home/darya/Документы/453502/ОАиП/LR8/Task_2/struct_funcs.cpp",
   "file": "/home/darya/Документы/453502/ОАиП/LR8/Task_2/struct_funcs.cpp",
   "output": "CMakeFiles/Task_2.dir/struct_funcs.cpp.o"

@@ -1,57 +1,6 @@
 #include "func.h"
-#include <fstream>
-#include <curl/curl.h>
-extern int size;
-bool check = false;
-int del_size;
 
-//Вспомогательные функции для параметров
-std::string elastic_choose_npar() { //Выбор параметра
-    std::cout << "Какой параметр вы хотите указать?\n" <<
-        "1. Порядковый номер.\n" <<
-        "2. Фамилия.\n" <<
-        "3. Имя.\n" <<
-        "4. Отчество.\n" <<
-        "5. Дата постановки на учёт.\n" <<
-        "6. Адрес.\n";
-    int npar = int_input(1, 6);
-    if(npar == 1) return "num";
-    else if(npar == 2) return "surname";
-    else if(npar == 3) return "name";
-    else if(npar == 4) return "midname";
-    else if(npar == 5) return "date";
-    else return "address";
-}
-std::string elastic_par_choice(std::string& npar) { //Ввод параметра по его номеру
-    std::string par;
-    getchar();
-    if(npar == "num") {
-        std::cout << "Введите порядковый номер:\n";
-        par = std::to_string(int_input());
-    }
-    else if(npar == "surname") {
-        std::cout << "Введите фамилию:\n";
-        par = name_input();
-    }
-    else if(npar == "name") {
-        std::cout << "Введите имя:\n";
-        par = name_input();            
-    }
-    else if(npar == "midname") {
-        std::cout << "Введите отчество:\n";
-        par = name_input();            
-    }
-    else if(npar == "date") {
-        std::cout <<  "Введите дату постановки на учёт (формат: ДД.ММ.ГГГГ):\n";
-        par = date_input();            
-    }
-    else {
-        std::cout << "Введите улицу:\n";
-        par = name_input();
-   
-    }
-    return par;
-}
+bool check = false;
 
 
 // Пустая функция для подавления вывода 
@@ -64,7 +13,14 @@ size_t write_to_file(void* ptr, size_t size, size_t nmemb, std::ofstream* stream
     return size * nmemb; 
 }
 
-
+//Функции для обработки дат
+int d_int(std::string& A) {
+    return stoi(A.substr(0, 2)) + 30 * stoi(A.substr(3, 2)) + 365 * stoi(A.substr(6, 4));
+}
+std::string d_to_jform(const char* date) {
+    std::string A = date;
+    return A.substr(6) + "-" + A.substr(3, 2) + "-" + A.substr(0, 2);;
+}
 
 void delete_old_docs() { //Удаление предыдущих структур
     CURL* curl;
@@ -108,18 +64,22 @@ void delete_old_docs() { //Удаление предыдущих структу�
 
 std::string struct_to_JSON(queue* Q, int n) {
     std::string Struct;
-    Struct = "{\n    \"num\": \"";
+    Struct = "{\n    \"num\": ";
     Struct += std::to_string(n);
-    Struct += "\",\n    \"surname\": \"";
+    Struct += ",\n    \"surname\": \"";
     Struct += Q->surname;
     Struct += "\",\n    \"name\": \"";
     Struct += Q->name;
     Struct += "\",\n    \"midname\": \"";
     Struct += Q->midname;
     Struct += "\",\n    \"date\": \"";
-    Struct += Q->date;
+    Struct += d_to_jform(Q->date);
     Struct += "\",\n    \"address\": \"";
     Struct += Q->address;
+    Struct += "\",\n    \"num_txt\": \"";
+    Struct += std::to_string(n);
+    Struct += "\",\n    \"date_txt\": \"";
+    Struct += Q->date;
     Struct += "\"\n}";
     return Struct;
 }
@@ -170,21 +130,148 @@ void send_indexes(queue* Q) {
     curl_global_cleanup();
 }
 
-void search_by_par(std::string par, std::string npar) {
+void search_by_par() {
     CURL *curl;
     CURLcode res;
+
+    std::cout << "Какой параметр вы хотите указать?\n" <<
+        "1. Порядковый номер.\n" <<
+        "2. ФИО.\n" <<
+        "3. Дата постановки на учёт.\n" <<
+        "4. Улица\n" <<
+        "5. Поиск по всем параметрам.\n";
+    int npar = int_input(1, 5);
 
     // Инициализация curl
     curl_global_init(CURL_GLOBAL_DEFAULT);
     curl = curl_easy_init(); 
     if(curl) {
-        std::string request  = R"({
-            "query": {
-                "match": {
-                    ")" + npar + R"(": ")" + par + R"("
+        std::string request, par;
+        if(npar == 1) { //Порядковый номер
+            int ngr = 1, vgr = 0;
+            while(vgr - ngr < 0) {
+                std::cout << "Введите нижнюю границу:\n";
+                ngr = int_input();
+                std::cout << "Введите верхнюю границу:\n";
+                vgr = int_input(); 
+                if(vgr - ngr >= 0) break;
+                std::cout << "Неверно заданный диапазон!\n";
+            }
+            request = R"({
+                "query": {
+                    "range": {
+                        "num": {
+                            "gte": )" + std::to_string(ngr) + R"(,
+                            "lte": )" + std::to_string(vgr) + R"(
+                        }
+                    }
+                }
+            })";
+        }
+        else if(npar == 2) { //ФИО
+            std::cout << "Введите фамилию/имя/отчество:\n";
+            par = name_input();
+            request = R"({
+                "query": {
+                    "multi_match": {
+                    "query": ")" + par + R"(",
+                    "fields": ["name", "surname", "midname"]
+                    }
+                }
+            })";
+        }
+        else if(npar == 3) { //Дата
+            std::cout << "Проводить поиск: 1)по месяцу/году;  2)по диапазону дат?\n";
+            if(int_input(1, 2) == 1) {
+                std::cout << "Введите номер месяца или год:\n";
+                int date = int_input(0, 2024);
+                if(date > 0 && date <= 12) {
+                    request = R"({
+                        "query": {
+                            "bool": {
+                            "filter": {
+                                "script": {
+                                "script": {
+                                    "source": "doc['date'].value.monthValue == params.month",
+                                    "params": {
+                                    "month": )" + std::to_string(date) + R"(
+                                    }
+                                }
+                                }
+                            }
+                            }
+                        }
+                    })";
+                }
+                else {
+                    request = R"({
+                        "query": {
+                            "bool": {
+                            "filter": {
+                                "script": {
+                                "script": {
+                                    "source": "doc['date'].value.year == params.year",
+                                    "params": {
+                                    "year": )" + std::to_string(date) + R"(
+                                    }
+                                }
+                                }
+                            }
+                            }
+                        }
+                    })";
                 }
             }
-        })";
+            else {
+                getchar();
+                std::string date1 = "00.00.0000", date2 = "00.00.0000";
+                while(d_int(date2) <= d_int(date1)) {
+                    std::cout << "Введите нижнюю границу (ДД.ММ.ГГГГ):\n";
+                    date1 = date_input();
+                    std::cout << "Введите верхнюю границу (ДД.ММ.ГГГГ):\n";
+                    date2 = date_input();
+                    if(d_int(date1) < d_int(date2)) break;
+                    std::cout << "Неверно введённый диапазон!\n";
+                }
+                request = R"({
+                    "query": {
+                        "range": {
+                            "date": {
+                                "gte": ")" + d_to_jform(date1.c_str()) + R"(",
+                                "lt": ")" + d_to_jform(date2.c_str()) + R"("
+                            }
+                        }
+                    }
+                })";
+            }
+        }
+        else if(npar == 4) { //Улица
+            std::cout << "Введите улицу:\n";
+            par = name_input();
+            request  = R"({
+                "query": {
+                    "match": {
+                        "address": ")" + par + R"("
+                    }
+                }
+            })";
+        }
+        else{ //Все поля
+            std::string str = "";
+            std::cout << "Введите запрос:\n";
+            while(str == "" || std::count(str.begin(), str.end(), ' ') == str.size()) {
+                getline(std::cin, str);
+            }
+            request = R"({
+                "query": {
+                    "multi_match": {
+                    "query": ")" + str + R"(",
+                    "fields": ["name", "surname", "midname", "date_txt", "num_txt", "address"]
+                    }
+                }
+            })";
+        }
+        std::cout << std::endl;
 
         struct curl_slist *headers = NULL;
         headers = curl_slist_append(headers, "Content-Type: application/json");
@@ -220,25 +307,23 @@ void search_by_par(std::string par, std::string npar) {
     curl_global_cleanup();
 }
 
-int* JSON_to_queue() { //Преобразование JSON-вывода в список
+void JSON_to_queue() { //Преобразование JSON-вывода в список
     std::string str;
     queue Q;
-    int* del_list = (int*)malloc(sizeof(int)), n = 0;
     std::ifstream stream("res.json");
 
     getline(stream, str);
     if(stream.eof()) { //Проверка найдены ли покупатели(если нет, указатель будет в конце файла)
         std::cout << "Покупателей с заданным параметром не обнаружено!\n\n";
-        return NULL;
+        return;
     }
+
     while(!stream.eof()) { 
         //Порядковый номер
-        stream.seekg(12, std::ios::cur);
+        stream.seekg(11, std::ios::cur);
         getline(stream, str);
-        str.erase(str.size() - 2, 2);
+        str.erase(str.size() - 1, 1);
         strcpy(Q.num.str, str.c_str());
-        del_list = (int*)realloc(del_list, (n + 1) * sizeof(int));
-        del_list[n] = stoi(str); n++;
 
         //Фамилия
         stream.seekg(16, std::ios::cur);
@@ -262,38 +347,39 @@ int* JSON_to_queue() { //Преобразование JSON-вывода в сп�
         stream.seekg(13, std::ios::cur);
         getline(stream, str);
         str.erase(str.size() - 2, 2);
-        strcpy(Q.date, str.c_str());
+        std::string A = str.substr(8, 2) + "." + str.substr(5, 2) + "." + str.substr(0, 4);
+        strcpy(Q.date, A.c_str());
 
         //Адрес
         stream.seekg(16, std::ios::cur);
         getline(stream, str);
-        str.erase(str.size() - 1, 1);
+        str.erase(str.size() - 2, 2);
         strcpy(Q.address, str.c_str());
+
+        getline(stream, str);
+        getline(stream, str);
         getline(stream, str);
 
         queue_output(Q); //Вывод списка покупателей
+        std::cout << std::endl;
     }
-    std::cout << std::endl << std::endl;
-    del_size = n;
-    return del_list;
 }
 
 //Функция с поиском для main'а
-int* elasticsearch_func(queue* Q) {
+void elasticsearch_func(queue* Q) {
     if(Q == NULL) {
         std::cout << "Список квитанций не инициализирован. Выход из режима поиска квитанций...\n\n";
-        return NULL;
+        return;
     }
     delete_old_docs();
     send_indexes(Q); //Покупатели индексируются и отправляются
     if(check) {
-        std::string npar = elastic_choose_npar();
-        std::string par = elastic_par_choice(npar); //Задаётся параметр
-        search_by_par(par, npar); //Поиск покупателей по заданному параметру
-        return JSON_to_queue(); //Вывод списка в нужном формате
+        search_by_par(); //Поиск покупателей по заданному параметру
+        std::cout << "Найденные по заданным параметрам покупатели:\n\n";
+        JSON_to_queue(); //Вывод списка в нужном формате
     }
     else {
         check = true;
-        return elasticsearch_func(Q);
+        elasticsearch_func(Q);
     }
 }

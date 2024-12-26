@@ -1,6 +1,4 @@
 #pragma once
-#include <iostream>
-#include <cstring>
 #include "struct.h"
 
 //Консольно меню
@@ -31,4 +29,4 @@ void add_in_file(queue* Q, int n);
 void file_write(queue* Q);
 
 //Работа с elasticsearch
-int* elasticsearch_func(queue* Q); 
+void elasticsearch_func(queue* Q); 

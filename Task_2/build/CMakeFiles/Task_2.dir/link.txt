@@ -1,1 +1,1 @@
-/usr/bin/c++ -g CMakeFiles/Task_2.dir/elasticsearch.cpp.o CMakeFiles/Task_2.dir/filework.cpp.o CMakeFiles/Task_2.dir/ivalidation.cpp.o CMakeFiles/Task_2.dir/main.cpp.o CMakeFiles/Task_2.dir/solution.cpp.o CMakeFiles/Task_2.dir/struct_funcs.cpp.o -o Task_2  /usr/lib/x86_64-linux-gnu/libcurl.so 
+/usr/bin/c++ -g CMakeFiles/Task_2.dir/elasticsearch.cpp.o CMakeFiles/Task_2.dir/filework.cpp.o CMakeFiles/Task_2.dir/ivalidation.cpp.o CMakeFiles/Task_2.dir/main.cpp.o CMakeFiles/Task_2.dir/struct_funcs.cpp.o -o Task_2  /usr/lib/x86_64-linux-gnu/libcurl.so 

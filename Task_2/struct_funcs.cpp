@@ -1,7 +1,6 @@
 #include "func.h"
+
 int size = 0;
-extern bool efile;
-extern int del_size;
 
 int console_func() { //Консольное меню
     std::cout << "Выберите действия из предложенного списка:\n" <<
@@ -174,16 +173,15 @@ queue* add_queues(queue* Q) {
         std::cout << "Список покупателей не инициализирован. Выход из режима добавления покупателей...\n\n";
         return Q;
     }
+    int n = size;
     while (true) {
         queue* q = (queue*)realloc(Q, (size + 1) * sizeof(queue));
         if(q == NULL) {
             std::cout << "К сожалению, достигнуто максимальное количество покупателей.\n Выход из режима добавления покупателей...\n\n";
             return Q;
         }
-        int n = size;
         Q = q;
         size++;
-        std::cout << std::endl;
         queue_input(Q[size - 1], size);
         std::cout << "Добавить ещё одну квитанцию? (1 - да, 0 - нет):\n";
         if(!int_input(0, 1)) {
@@ -204,41 +202,28 @@ void del_queue(queue* Q) {
         return;
     }
 
-    std::cout << "Осуществить поиск с возможностью частичного совпаденния при помощи elasticsearch?\n" <<
-        "(1 - да, 0 - нет): ";
-    int* num;
-    bool el = int_input(0, 1);
-    if (el) {
-        num = elasticsearch_func(Q);
-        for(int i = 0; i < del_size; i++) {
-            Q[num[i] - 1].surname[0] = '*'; Q[num[i] - 1].surname[1] = '\0';
+    int* num, npar = choose_npar();
+    std::string par = par_choice(npar); //Задаётся параметр
+    num = (int*)malloc(sizeof(int)); 
+    int n = 0;
+    for(int i = 0; i < size; i++) {
+        if(check(npar, par, Q[i])) { //Соответствие параметру - название меняется на "*"
+            n++;
+            num = (int*)realloc(num, n * sizeof(int));
+            num[n - 1] = i + 1; //Номера удаляемых покупателей
+            Q[i].surname[0] = '*'; Q[i].surname[1] = '\0';
         }
     }
-    else {
-        int npar = choose_npar();
-        std::string par = par_choice(npar); //Задаётся параметр
-        num = (int*)malloc(sizeof(int)); 
-        int n = 0;
-        for(int i = 0; i < size; i++) {
-            if(check(npar, par, Q[i])) { //Соответствие параметру - название меняется на "*"
-                n++;
-                num = (int*)realloc(num, n * sizeof(int));
-                num[n - 1] = i + 1; //Номера удаляемых покупателей
-                Q[i].surname[0] = '*'; Q[i].surname[1] = '\0';
-            }
-        }
-        del_size = n;
-    }
-    if(del_size) {
-        if(del_size == 1) {
+    if(n) {
+        if(n == 1) {
             std::cout << "Из списка был удалён покупатель с порядковым номером " << num[0];
         }
         else {
             std::cout << "Из списка были удалены покупатели с порядковыми номерами " << num[0];
-            for(int i = 1; i < del_size; i++) std::cout << ", " << num[i];
+            for(int i = 1; i < n; i++) std::cout << ", " << num[i];
         }
         std::cout << ".\n";
-        for(int i = num[0] - 1; i < size - del_size; i++) { //Удаление покупателей
+        for(int i = num[0] - 1; i < size - n; i++) { //Удаление покупателей
             if(Q[i].surname[0] == '*') {
                 int j = i + 1;
                 while(!strcmp(Q[j].surname, "*")) {
@@ -249,16 +234,16 @@ void del_queue(queue* Q) {
             }
         }
         free(num);
-        size -= del_size;
+        size -= n;
         Q = (queue*)realloc(Q, size * sizeof(queue));
         if(size) {
             std::cout << "Изменённый список покупателей:\n\n";
             show_queues(Q);
         }
-        del_size = 0;
+        n = 0;
     }
     else {
-        if(!el) std::cout << "Покупателей с заданным параметром не найдено!\n\n";
+        std::cout << "Покупателей с заданным параметром не найдено!\n\n";
     }
 }
 
@@ -300,16 +285,16 @@ void del_rep_queue(queue* Q) { //Удаление повторяющихся
     int* num = (int*)malloc(sizeof(int));
     for(int i = 0; i < size - 1; i++) {
         if(Q[i].name[0] == '*') continue;
-        for(int j = i + 1; j < size - 1; j++) {
-            if(Q[i].surname == Q[j].surname &&
-               Q[i].name == Q[j].name &&
-               Q[i].midname == Q[j].midname &&
-               Q[i].address == Q[j].address) 
+        for(int j = i + 1; j < size; j++) {
+            if(!strcmp(Q[i].surname, Q[j].surname) &&
+               !strcmp(Q[i].name, Q[j].name) &&
+               !strcmp(Q[i].midname, Q[j].midname) &&
+               !strcmp(Q[i].address, Q[j].address))
             {
                 n++;
                 num = (int*)realloc(num, n * sizeof(int));
                 num[n - 1] = i;
-                Q[i].surname[0] = '*'; Q[i].surname[1] = '\0';
+                Q[j].surname[0] = '*'; Q[j].surname[1] = '\0';
             }
         }
     }
@@ -337,5 +322,6 @@ void del_rep_queue(queue* Q) { //Удаление повторяющихся
         std::cout << "Изменённый список покупателей:\n\n";
         show_queues(Q);
     }
+    else std::cout << "Повторяющихся покупателей не было обнаружено!\n\n";
     free(num);
 } 

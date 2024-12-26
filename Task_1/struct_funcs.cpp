@@ -1,7 +1,6 @@
 #include "func.h"
+
 int size = 0;
-extern bool efile;
-extern int del_size;
 
 int console_func() { //Консольное меню
     std::cout << "Выберите действие из предложенного списка:\n" <<
@@ -85,6 +84,7 @@ quittance* create_list(quittance* Q) {
         }       
     }
     size = 0;
+    efile = false;
     std::cout << "Выберите механизм ввода данных:\n" <<
         "1. Ввод количества квитанций.\n" <<
         "2. Ввод до появления квитанции с заданным признаком.\n" <<
@@ -191,12 +191,12 @@ quittance* add_quittances(quittance* Q) {
         quitt_input(Q[size - 1]);
         std::cout << "Добавить ещё одну квитанцию? (1 - да, 0 - нет):\n";
         if(!int_input(0, 1)) {
-            if(efile) { //Проверка записывались ли данные в файл
+            if(file) { //Проверка записывались ли данные в файл
                 std::cout << "Внести изменения в бинарный файл? (1 - да, 0 - нет):\n";
-                if(int_input()) add_in_file(Q, n);
-                else efile = false;
+                if(int_input(0, 1)) add_in_file(Q, n);
             }
             std::cout << "Выход из режима добавления квитанций...\n\n";
+            efile = false;
             return q;
         }
     }
@@ -221,46 +221,30 @@ void del_quitt(quittance* Q) {
         std::cout << "Список квитанций не инициализирован. Выход из режима удаления квитанций...\n\n";
         return;
     }
-    std::cout << "Осуществить поиск с возможностью частичного совпаденния при помощи elasticsearch?\n" <<
-        "(1 - да, 0 - нет): ";
+
     int* num;
-    bool el = int_input(0, 1);
-    if (el) {
-        num = elasticsearch_func(Q);
-        std::cout << "Уверены, что хотите удалить эти квитанции? (1 - да, 0 - нет)\n";
-        if(!int_input(0, 1) && size) {
-            std::cout << "Выход из режима удаления квитанций...\n\n";
-            return;
-        }
-        for(int i = 0; i < del_size; i++) {
-            Q[num[i] - 1].device[0] = '*'; Q[num[i] - 1].device[1] = '\0';
+    int npar = choose_npar();
+    std::string par = par_choice(npar); //Задаётся параметр
+    num = (int*)malloc(sizeof(int));
+    int n = 0;
+    for(int i = 0; i < size; i++) {
+        if(check(npar, par, Q[i])) { //Соответствие параметру - название меняется на "*"
+            n++;
+            num = (int*)realloc(num, n * sizeof(int));
+            num[n - 1] = i + 1; //Номера удаляемых квитанций
+            Q[i].device[0] = '*'; Q[i].device[1] = '\0';
         }
     }
-    else {
-        int npar = choose_npar();
-        std::string par = par_choice(npar); //Задаётся параметр
-        num = (int*)malloc(sizeof(int));
-        int n = 0;
-        for(int i = 0; i < size; i++) {
-            if(check(npar, par, Q[i])) { //Соответствие параметру - название меняется на "*"
-                n++;
-                num = (int*)realloc(num, n * sizeof(int));
-                num[n - 1] = i + 1; //Номера удаляемых квитанций
-                Q[i].device[0] = '*'; Q[i].device[1] = '\0';
-            }
-        }
-        del_size = n;
-    }
-    if(del_size) {
-        if(del_size == 1) {
+    if(n) {
+        if(n == 1) {
             std::cout << "Была удалена квитанция с номером " << num[0];
         }
         else {
             std::cout << "Были удалены квитанции с номерами " << num[0];
-            for(int i = 1; i < del_size; i++) std::cout << ", " << num[i];
+            for(int i = 1; i < n; i++) std::cout << ", " << num[i];
         }
         std::cout << ".\n";
-        for(int i = num[0] - 1; i < size - del_size; i++) { //Удаление квитанций
+        for(int i = num[0] - 1; i < size - n; i++) { //Удаление квитанций
             if(!strcmp(Q[i].device, "*")) {
                 int j = i + 1;
                 while(!strcmp(Q[j].device, "*")) {
@@ -270,12 +254,13 @@ void del_quitt(quittance* Q) {
             }
         }
         free(num);
-        size -= del_size;
-        Q = (quittance*)realloc(Q, size*sizeof(quittance));
+        size -= n;
+        Q = (quittance*)realloc(Q, size * sizeof(quittance));
         if(size) {
             std::cout << "Изменённый список квитанций:\n\n";
             show_quittances(Q);
         }
+        efile = false;
     }
 }
 
@@ -329,12 +314,13 @@ void sort_quitt(quittance* Q) { //Пузырьковая сортировка п
         Q[i].date.itgr = stoi(A.substr(0, 2)) + 30 * stoi(A.substr(3, 2)) + 365 * stoi(A.substr(6, 4));
     }
     for(int i = 0; i < size - 1; i++) {
-        for(int j = i; j < size - 1; j++) {
+        for(int j = 0; j < size - i - 1; j++) {
             if(Q[j].date.itgr < Q[j + 1].date.itgr) {
                 std::swap(Q[j], Q[j + 1]);
             }
         }
     }
+    efile = false;
     std::cout << "Список квитанций отсортирован!\n\n";
 }
 

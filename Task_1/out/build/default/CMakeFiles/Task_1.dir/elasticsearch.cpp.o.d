@@ -2,9 +2,9 @@ CMakeFiles/Task_1.dir/elasticsearch.cpp.o: \
  /home/darya/Документы/453502/ОАиП/LR8/Task_1/elasticsearch.cpp \
  /usr/include/stdc-predef.h \
  /home/darya/Документы/453502/ОАиП/LR8/Task_1/func.h \
- /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
- /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
- /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
+ /home/darya/Документы/453502/ОАиП/LR8/Task_1/struct.h \
+ /usr/include/stdio.h \
+ /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/bits/timesize.h \
@@ -12,23 +12,33 @@ CMakeFiles/Task_1.dir/elasticsearch.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/long-double.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
+ /usr/include/x86_64-linux-gnu/bits/types.h \
+ /usr/include/x86_64-linux-gnu/bits/typesizes.h \
+ /usr/include/x86_64-linux-gnu/bits/time64.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
+ /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
+ /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/floatn.h \
+ /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
+ /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/cpu_defines.h \
  /usr/include/c++/13/pstl/pstl_config.h /usr/include/c++/13/ostream \
  /usr/include/c++/13/ios /usr/include/c++/13/iosfwd \
  /usr/include/c++/13/bits/stringfwd.h \
  /usr/include/c++/13/bits/memoryfwd.h /usr/include/c++/13/bits/postypes.h \
  /usr/include/c++/13/cwchar /usr/include/wchar.h \
- /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
- /usr/include/x86_64-linux-gnu/bits/floatn.h \
- /usr/include/x86_64-linux-gnu/bits/floatn-common.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
- /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
  /usr/include/x86_64-linux-gnu/bits/wchar.h \
  /usr/include/x86_64-linux-gnu/bits/types/wint_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__FILE.h \
- /usr/include/x86_64-linux-gnu/bits/types/FILE.h \
  /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
  /usr/include/c++/13/exception /usr/include/c++/13/bits/exception.h \
@@ -44,10 +54,7 @@ CMakeFiles/Task_1.dir/elasticsearch.cpp.o: \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++locale.h \
  /usr/include/c++/13/clocale /usr/include/locale.h \
  /usr/include/x86_64-linux-gnu/bits/locale.h /usr/include/c++/13/cctype \
- /usr/include/ctype.h /usr/include/x86_64-linux-gnu/bits/types.h \
- /usr/include/x86_64-linux-gnu/bits/typesizes.h \
- /usr/include/x86_64-linux-gnu/bits/time64.h \
- /usr/include/x86_64-linux-gnu/bits/endian.h \
+ /usr/include/ctype.h /usr/include/x86_64-linux-gnu/bits/endian.h \
  /usr/include/x86_64-linux-gnu/bits/endianness.h \
  /usr/include/c++/13/bits/ios_base.h /usr/include/c++/13/ext/atomicity.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/gthr.h \
@@ -121,11 +128,6 @@ CMakeFiles/Task_1.dir/elasticsearch.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
  /usr/include/alloca.h /usr/include/x86_64-linux-gnu/bits/stdlib-float.h \
  /usr/include/c++/13/bits/std_abs.h /usr/include/c++/13/cstdio \
- /usr/include/stdio.h /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
- /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
- /usr/include/x86_64-linux-gnu/bits/stdio_lim.h \
  /usr/include/c++/13/cerrno /usr/include/errno.h \
  /usr/include/x86_64-linux-gnu/bits/errno.h /usr/include/linux/errno.h \
  /usr/include/x86_64-linux-gnu/asm/errno.h \
@@ -151,9 +153,8 @@ CMakeFiles/Task_1.dir/elasticsearch.cpp.o: \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc /usr/include/c++/13/cstring \
- /usr/include/string.h /usr/include/strings.h \
- /home/darya/Документы/453502/ОАиП/LR8/Task_1/struct.h \
- /usr/include/c++/13/fstream /usr/include/c++/13/bits/codecvt.h \
+ /usr/include/string.h /usr/include/strings.h /usr/include/c++/13/fstream \
+ /usr/include/c++/13/bits/codecvt.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
  /usr/include/c++/13/bits/fstream.tcc \
@@ -192,4 +193,11 @@ CMakeFiles/Task_1.dir/elasticsearch.cpp.o: \
  /usr/include/x86_64-linux-gnu/curl/options.h \
  /usr/include/x86_64-linux-gnu/curl/header.h \
  /usr/include/x86_64-linux-gnu/curl/websockets.h \
- /usr/include/x86_64-linux-gnu/curl/mprintf.h
+ /usr/include/x86_64-linux-gnu/curl/mprintf.h \
+ /usr/include/c++/13/algorithm /usr/include/c++/13/bits/stl_algo.h \
+ /usr/include/c++/13/bits/algorithmfwd.h \
+ /usr/include/c++/13/bits/stl_heap.h \
+ /usr/include/c++/13/bits/uniform_int_dist.h \
+ /usr/include/c++/13/bits/stl_tempbuf.h \
+ /usr/include/c++/13/pstl/glue_algorithm_defs.h \
+ /usr/include/c++/13/pstl/execution_defs.h

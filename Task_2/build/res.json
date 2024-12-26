@@ -1,8 +1,10 @@
-{"took":4,"timed_out":false,"_shards":{"total":1,"successful":1,"skipped":0,"failed":0},"hits":{"total":{"value":1,"relation":"eq"},"max_score":0.83355963,"hits":[{"_index":"queue","_type":"_doc","_id":"1","_score":0.83355963,"_source":{
-    "num": "1",
+{"took":4,"timed_out":false,"_shards":{"total":1,"successful":1,"skipped":0,"failed":0},"hits":{"total":{"value":1,"relation":"eq"},"max_score":1.0,"hits":[{"_index":"queue","_type":"_doc","_id":"1","_score":1.0,"_source":{
+    "num": 1,
     "surname": "Тропа",
     "name": "Дада",
     "midname": "Вот",
-    "date": "11.11.1111",
-    "address": "ул. Творог, д. 23"
+    "date": "1111-11-11",
+    "address": "ул. Творог, д. 23",
+    "num_txt": "1",
+    "date_txt": "11.11.1111"
 }}]}}

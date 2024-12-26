@@ -225,30 +225,6 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_2.dir/build.make CMakeFiles/Task_2.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-solution.o: solution.cpp.o
-.PHONY : solution.o
-
-# target to build an object file
-solution.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_2.dir/build.make CMakeFiles/Task_2.dir/solution.cpp.o
-.PHONY : solution.cpp.o
-
-solution.i: solution.cpp.i
-.PHONY : solution.i
-
-# target to preprocess a source file
-solution.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_2.dir/build.make CMakeFiles/Task_2.dir/solution.cpp.i
-.PHONY : solution.cpp.i
-
-solution.s: solution.cpp.s
-.PHONY : solution.s
-
-# target to generate assembly for a file
-solution.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_2.dir/build.make CMakeFiles/Task_2.dir/solution.cpp.s
-.PHONY : solution.cpp.s
-
 struct_funcs.o: struct_funcs.cpp.o
 .PHONY : struct_funcs.o
 
@@ -294,9 +270,6 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... solution.o"
-	@echo "... solution.i"
-	@echo "... solution.s"
 	@echo "... struct_funcs.o"
 	@echo "... struct_funcs.i"
 	@echo "... struct_funcs.s"

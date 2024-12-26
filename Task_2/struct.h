@@ -1,4 +1,12 @@
 #pragma once
+#include <fstream>
+#include <curl/curl.h>
+#include <iostream>
+#include <cstring>
+#include <algorithm>
+
+extern int size;
+extern bool file, efile;
 
 typedef struct queue {
     char surname[200];

@@ -1,6 +1,4 @@
 #pragma once
-#include <iostream>
-#include <cstring>
 #include "struct.h"
 
 //консольное меню
@@ -39,4 +37,4 @@ void add_in_file(quittance* Q, int n);
 void edit_in_file(quittance* Q, int n, int npar, const char* par);
 
 //Работа с elasticsearch
-int* elasticsearch_func(quittance* Q);
+void elasticsearch_func(quittance* Q);

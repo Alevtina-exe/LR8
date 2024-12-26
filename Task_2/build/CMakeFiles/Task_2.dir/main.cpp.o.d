@@ -2,7 +2,8 @@ CMakeFiles/Task_2.dir/main.cpp.o: \
  /home/darya/Документы/453502/ОАиП/LR8/Task_2/main.cpp \
  /usr/include/stdc-predef.h \
  /home/darya/Документы/453502/ОАиП/LR8/Task_2/func.h \
- /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
+ /home/darya/Документы/453502/ОАиП/LR8/Task_2/struct.h \
+ /usr/include/c++/13/fstream /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
  /usr/include/features.h /usr/include/features-time64.h \
@@ -13,7 +14,7 @@ CMakeFiles/Task_2.dir/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/gnu/stubs.h \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/cpu_defines.h \
- /usr/include/c++/13/pstl/pstl_config.h /usr/include/c++/13/ostream \
+ /usr/include/c++/13/pstl/pstl_config.h /usr/include/c++/13/istream \
  /usr/include/c++/13/ios /usr/include/c++/13/iosfwd \
  /usr/include/c++/13/bits/stringfwd.h \
  /usr/include/c++/13/bits/memoryfwd.h /usr/include/c++/13/bits/postypes.h \
@@ -148,8 +149,54 @@ CMakeFiles/Task_2.dir/main.cpp.o: \
  /usr/include/c++/13/bits/streambuf_iterator.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_inline.h \
  /usr/include/c++/13/bits/locale_facets.tcc \
- /usr/include/c++/13/bits/basic_ios.tcc \
- /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
- /usr/include/c++/13/bits/istream.tcc /usr/include/c++/13/cstring \
+ /usr/include/c++/13/bits/basic_ios.tcc /usr/include/c++/13/ostream \
+ /usr/include/c++/13/bits/ostream.tcc \
+ /usr/include/c++/13/bits/istream.tcc /usr/include/c++/13/bits/codecvt.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/13/bits/c++io.h \
+ /usr/include/c++/13/bits/fstream.tcc \
+ /usr/include/x86_64-linux-gnu/curl/curl.h \
+ /usr/include/x86_64-linux-gnu/curl/curlver.h \
+ /usr/include/x86_64-linux-gnu/curl/system.h \
+ /usr/include/x86_64-linux-gnu/sys/socket.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
+ /usr/include/x86_64-linux-gnu/bits/socket.h \
+ /usr/include/x86_64-linux-gnu/bits/socket_type.h \
+ /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
+ /usr/include/x86_64-linux-gnu/asm/socket.h \
+ /usr/include/asm-generic/socket.h /usr/include/linux/posix_types.h \
+ /usr/include/linux/stddef.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
+ /usr/include/asm-generic/posix_types.h \
+ /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
+ /usr/include/asm-generic/bitsperlong.h \
+ /usr/include/x86_64-linux-gnu/asm/sockios.h \
+ /usr/include/asm-generic/sockios.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/limits.h \
+ /usr/lib/gcc/x86_64-linux-gnu/13/include/syslimits.h \
+ /usr/include/limits.h /usr/include/x86_64-linux-gnu/bits/posix1_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/local_lim.h \
+ /usr/include/linux/limits.h \
+ /usr/include/x86_64-linux-gnu/bits/posix2_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
+ /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
+ /usr/include/x86_64-linux-gnu/sys/time.h \
+ /usr/include/x86_64-linux-gnu/curl/easy.h \
+ /usr/include/x86_64-linux-gnu/curl/multi.h \
+ /usr/include/x86_64-linux-gnu/curl/curl.h \
+ /usr/include/x86_64-linux-gnu/curl/urlapi.h \
+ /usr/include/x86_64-linux-gnu/curl/options.h \
+ /usr/include/x86_64-linux-gnu/curl/header.h \
+ /usr/include/x86_64-linux-gnu/curl/websockets.h \
+ /usr/include/x86_64-linux-gnu/curl/mprintf.h \
+ /usr/include/c++/13/iostream /usr/include/c++/13/cstring \
  /usr/include/string.h /usr/include/strings.h \
- /home/darya/Документы/453502/ОАиП/LR8/Task_2/struct.h
+ /usr/include/c++/13/algorithm /usr/include/c++/13/bits/stl_algo.h \
+ /usr/include/c++/13/bits/algorithmfwd.h \
+ /usr/include/c++/13/bits/stl_heap.h \
+ /usr/include/c++/13/bits/uniform_int_dist.h \
+ /usr/include/c++/13/bits/stl_tempbuf.h \
+ /usr/include/c++/13/pstl/glue_algorithm_defs.h \
+ /usr/include/c++/13/pstl/execution_defs.h

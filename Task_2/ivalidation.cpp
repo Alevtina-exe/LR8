@@ -1,4 +1,3 @@
-#include <string.h>
 #include "func.h"
 
 int int_input(int min, int max) { //Ввод целого числа с ограничениями
@@ -26,10 +25,11 @@ int int_input() { //Ввод натурального числа
     }
 }
 
+
 void format_str(std::string& str, bool rus) { //Приведение строки к виду Ааааа
     if(rus) { //если слово на русском
         int c = int(str[1]);
-        if(c == -111) { //буква ё
+        if(c == -111 && int(str[0]) == -47) { //буква ё
             str[1] = char(-127);
             str[0]--;
         }
@@ -40,7 +40,7 @@ void format_str(std::string& str, bool rus) { //Приведение строк�
         }
         for(int i = 3; i < str.length(); i += 2) {
             c = int(str[i]);
-            if(c == -127) { //буква ё
+            if(c == -127 && int(str[i - 1]) == -48) { //буква ё
                 str[i] = char(-111);
                 str[i - 1]++;
             }
@@ -136,6 +136,7 @@ void queue_input(queue& Q, int n) { //Ввод покупателя
     A += std::to_string(int_input());
     strcpy(Q.address, A.c_str());
 }
+
 void queue_output(queue& Q) { //Вывод покупателя
     std::cout << "Порядковый номер: " << Q.num.str <<
             ".\nФамилия: " << Q.surname <<

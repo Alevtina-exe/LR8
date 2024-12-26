@@ -1,6 +1,5 @@
-#include <stdio.h>
 #include "func.h"
-extern int size;
+
 bool file = false, efile = false; //Проверка открыт ли файл
 std::string filename = "struct.bin"; //Имя файла
 
@@ -37,10 +36,9 @@ void file_write(quittance* Q) {
     }
     else { //Внесение изменений, если запись в файл производилась до этого
         FILE* stream = fopen(filename.c_str(), "wb");
-        int num = fwrite(Q, sizeof(quittance), size, check);
+        int num = fwrite(Q, sizeof(quittance), size, stream);
         if(num != size) { 
             std::cout << "Возникла ошибка записи в файл! Выход из режима записи в бинарный файл...\n\n";
-            remove(filename.c_str());
             return;
         }
         efile = true;
@@ -99,12 +97,13 @@ quittance* recover_from_file(quittance* Q) { //Восстановление ст
     fclose(check);
     std::cout << "Восстановленный список квитанций:\n\n";
     show_quittances(array);
+    efile = true;
     return array;
 }
 
 void add_in_file(quittance* Q, int n) { //Добавление квитанций без перезаписи
     FILE* stream = fopen(filename.c_str(), "ab");
-    for(n--; n < size; n++) {
+    for(; n < size; n++) {
         fwrite(&Q[n], 1, sizeof(quittance), stream);
     }
     fclose(stream);

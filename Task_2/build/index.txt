@@ -32,9 +32,7 @@ curl -X PUT "http://localhost:9200/queue" -H 'Content-Type: application/json' -d
   "mappings": {
     "properties": {
       "num": {
-        "type": "text",
-        "analyzer": "partial_match_analyzer",
-        "search_analyzer": "standard"
+        "type": "long"
       },
       "surname": {
         "type": "text",
@@ -52,9 +50,19 @@ curl -X PUT "http://localhost:9200/queue" -H 'Content-Type: application/json' -d
         "search_analyzer": "standard"
       },
       "date": {
-        "type": "text"
+        "type": "date"
       },
       "address": {
+        "type": "text",
+        "analyzer": "partial_match_analyzer",
+        "search_analyzer": "standard"
+      },
+      "num_txt": {
+        "type": "text",
+        "analyzer": "partial_match_analyzer",
+        "search_analyzer": "standard"
+      },
+      "date_txt": {
         "type": "text",
         "analyzer": "partial_match_analyzer",
         "search_analyzer": "standard"
@@ -62,3 +70,6 @@ curl -X PUT "http://localhost:9200/queue" -H 'Content-Type: application/json' -d
     }
   }
 }'
+
+
+curl -X DELETE "http://localhost:9200/queue"

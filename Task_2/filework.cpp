@@ -1,8 +1,8 @@
-#include <fstream>
 #include "func.h"
-extern int size;
+
 bool file = false, efile = false;
 std::string filename = "struct.txt";
+
 
 std::string queue_to_string(queue& Q) { //Преобразования данных о покупателе в строку
     std::string str = "Порядковый номер: " ;
@@ -63,8 +63,8 @@ void file_write(queue* Q) { //Запись в файл
 
 void add_in_file(queue* Q, int n) { //Добавление покупателей без перезаписи
     std::ofstream stream(filename, std::ios::app);
-    for(n--; n < size; n++) {
-        stream << std::endl << std::endl << queue_to_string(Q[n]);
+    for(; n < size; n++) {
+        stream << queue_to_string(Q[n]) << std::endl << std::endl;
     }
     stream.close();
 }
