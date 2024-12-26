@@ -39,4 +39,4 @@ void add_in_file(quittance* Q, int n);
 void edit_in_file(quittance* Q, int n, int npar, const char* par);
 
 //Работа с elasticsearch
-void elasticsearch_func(quittance* Q);
+int* elasticsearch_func(quittance* Q);

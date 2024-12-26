@@ -31,4 +31,4 @@ void add_in_file(queue* Q, int n);
 void file_write(queue* Q);
 
 //Работа с elasticsearch
-void elasticsearch_func(queue* Q); 
+int* elasticsearch_func(queue* Q); 

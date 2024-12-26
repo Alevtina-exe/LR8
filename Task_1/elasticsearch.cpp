@@ -2,7 +2,57 @@
 #include <fstream>
 #include <curl/curl.h>
 extern int size;
-bool check;
+bool check = false;
+int del_size;
+
+// Пустая функция для подавления вывода 
+size_t write_callback(void* ptr, size_t size, size_t nmemb, void* userdata) { 
+    return size * nmemb; 
+}
+// Функция для записи данных в файл 
+size_t write_to_file(void* ptr, size_t size, size_t nmemb, std::ofstream* stream) { 
+    stream->write((char*)ptr, size * nmemb); 
+    return size * nmemb; 
+}
+
+
+//Функции основного процесса(индексирование и поиск)
+void delete_old_docs() { //Удаление предыдущих структур
+    CURL* curl;
+    CURLcode res;
+
+    // Условие удаления всех документов
+    const std::string query = "{\"query\": {\"match_all\": {}}}";
+
+    // Инициализация cURL
+    curl = curl_easy_init();
+    if(curl) {
+        // Установка URL
+        curl_easy_setopt(curl, CURLOPT_URL, "http://localhost:9200/quittance/_delete_by_query");
+
+        // Установка типа HTTP-запроса POST
+        curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "POST");
+
+        // Установка тела запроса
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, query.c_str());
+
+        // Установка заголовков
+        struct curl_slist *headers = nullptr;
+        headers = curl_slist_append(headers, "Content-Type: application/json");
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
+        // Перенаправление вывода в пустую функцию 
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_callback); 
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, NULL);
+
+        // Выполнение запроса
+        res = curl_easy_perform(curl);
+
+        // Очистка
+        curl_easy_cleanup(curl);
+        curl_slist_free_all(headers);
+    }
+}
 
 std::string struct_to_JSON(quittance* Q, int n) {
     std::string Struct = "{\n    \"device\": \"";
@@ -19,11 +69,6 @@ std::string struct_to_JSON(quittance* Q, int n) {
     !strcmp(Q->status.str_stat ,"Выполнен") ? Struct += "true" : Struct += "false";
     Struct += "\n}";
     return Struct;
-}
-
-// Пустая функция для подавления вывода 
-size_t write_callback(void* ptr, size_t size, size_t nmemb, void* userdata) { 
-    return size * nmemb; 
 }
 
 void send_indexes(quittance* Q) {
@@ -47,7 +92,7 @@ void send_indexes(quittance* Q) {
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
         for(int i = 0; i < size; i++) {
-            std::string url = "http://localhost:9200/queue/_doc/" + std::to_string(i + 1);
+            std::string url = "http://localhost:9200/quittance/_doc/" + std::to_string(i + 1);
 
             // Установка URL для добавления документа
             curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
@@ -80,12 +125,6 @@ std::string npar_to_par(int npar) {
     else return "status";
 }
 
-// Функция для записи данных в файл 
-size_t write_to_file(void* ptr, size_t size, size_t nmemb, std::ofstream* stream) { 
-    stream->write((char*)ptr, size * nmemb); 
-    return size * nmemb; 
-}
-
 void search_by_par(std::string& par, std::string& npar) {
     CURL *curl;
     CURLcode res;
@@ -97,7 +136,6 @@ void search_by_par(std::string& par, std::string& npar) {
     else {
         par.insert(0, "\"");
         par.insert(par.size(), "\"");
-        std::cout << par << std::endl;
     }
     if(curl) {
         std::string request  = R"({
@@ -112,7 +150,7 @@ void search_by_par(std::string& par, std::string& npar) {
         headers = curl_slist_append(headers, "Content-Type: application/json");
 
         // Установка URL
-        curl_easy_setopt(curl, CURLOPT_URL, "http://localhost:9200/queue/_search");
+        curl_easy_setopt(curl, CURLOPT_URL, "http://localhost:9200/quittance/_search");
 
         // Установка типа данных
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
@@ -142,16 +180,16 @@ void search_by_par(std::string& par, std::string& npar) {
     curl_global_cleanup();
 }
 
-//Преобразование JSON-вывода в квитанции
-void JSON_to_quitt() {
+int* JSON_to_quitt() { //Преобразование JSON-вывода в квитанции
     std::string str;
     quittance Q;
     std::ifstream stream("res.json");
+    int* del_list = (int*)malloc(sizeof(int)), n = 0;
 
     getline(stream, str);
     if(stream.eof()) { //ПРоыерка найдены ли квитанции(если нет. указатель будет в конце файла)
         std::cout << "Квитанций с заданным параметром не обнаружено!\n\n";
-        return;
+        return NULL;
     }
     while(!stream.eof()) { 
         //Название прибора
@@ -165,6 +203,8 @@ void JSON_to_quitt() {
         getline(stream, str);
         str.erase(str.size() - 1, 1);
         std::cout << "\nКвитанция №" << str << ":\n";
+        del_list = (int*)realloc(del_list, (n + 1) * sizeof(int));
+        del_list[n] = stoi(str); n++;        
 
         //Серийный номер
         stream.seekg(19, std::ios::cur);
@@ -194,30 +234,27 @@ void JSON_to_quitt() {
         quitt_output(Q); //Вывод квитанций
     }
     std::cout << std::endl;
+    del_size = n;
+    return del_list;
 }
 
 //Функция с поиском для main'а
-void elasticsearch_func(quittance* Q) {
+int* elasticsearch_func(quittance* Q) {
     if(Q == NULL) {
         std::cout << "Список квитанций не инициализирован. Выход из режима поиска квитанций...\n\n";
-        return;
+        return NULL;
     }
+    delete_old_docs();
     send_indexes(Q); //Квитанции индексируются и отправляются
     if(check) {
         int npar = choose_npar();
         std::string par = par_choice(npar); //Задаётся параметр
         std::string NPAR = npar_to_par(npar);
         search_by_par(par, NPAR); //Поиск квитанций по заданному параметру
-        JSON_to_quitt(); //Вывод квитанций в нужном формате
+        return JSON_to_quitt(); //Вывод квитанций в нужном формате
     }
     else {
         check = true;
-        elasticsearch_func(Q);
+        return elasticsearch_func(Q);
     }
 }
-
-
-
-
-
-

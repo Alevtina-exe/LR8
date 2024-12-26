@@ -62,9 +62,9 @@ void file_write(queue* Q) { //Запись в файл
 }
 
 void add_in_file(queue* Q, int n) { //Добавление покупателей без перезаписи
-    std::ofstream stream(filename, std::ios::ate);
+    std::ofstream stream(filename, std::ios::app);
     for(n--; n < size; n++) {
-        stream << queue_to_string(Q[n]);
+        stream << std::endl << std::endl << queue_to_string(Q[n]);
     }
     stream.close();
 }

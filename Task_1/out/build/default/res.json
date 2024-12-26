@@ -1,4 +1,4 @@
-{"took":2,"timed_out":false,"_shards":{"total":1,"successful":1,"skipped":0,"failed":0},"hits":{"total":{"value":1,"relation":"eq"},"max_score":0.8390176,"hits":[{"_index":"quittance","_type":"_doc","_id":"3","_score":0.8390176,"_source":{
+{"took":3,"timed_out":false,"_shards":{"total":1,"successful":1,"skipped":0,"failed":0},"hits":{"total":{"value":1,"relation":"eq"},"max_score":0.8089868,"hits":[{"_index":"quittance","_type":"_doc","_id":"3","_score":0.8089868,"_source":{
     "device": "three",
     "num": 3,
     "serial_num": "THREE",

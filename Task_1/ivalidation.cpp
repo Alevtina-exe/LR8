@@ -2,39 +2,6 @@
 #include "func.h"
 #include <algorithm>
 
-void format_str(std::string& str, bool rus) { //Приведение строки к виду Ааааа
-    if(rus) { //если слово на русском
-        int c = int(str[1]);
-        if(c == -111) { //буква ё
-            str[1] = char(-127);
-            str[0]--;
-        }
-        else if(c >= -80 && c <= -65) str[1] = char(c - 32);
-        else if(c >= -128 && c <= -113) {
-            str[0]--;
-            str[1] = char(c + 32);
-        }
-        for(int i = 3; i < str.length(); i += 2) {
-            c = int(str[i]);
-            if(c == -127) { //буква ё
-                str[i] = char(-111);
-                str[i - 1]++;
-            }
-            else if(c >= -112 && c <= -97) str[i] = char(c + 32);
-            else if(c >= -96 && c <= -81) {
-                str[i] = char(c - 32);
-                str[i - 1]++;
-            }
-        }
-    }
-    else { //слово на английском
-        for(auto& c : str) {
-            c = tolower(c);
-        }
-        str[0] = toupper(str[0]);
-    }
-}
-
 int int_input(int min, int max) { //Ввод целого числа с ограничениями
     int a;
     while (true) {

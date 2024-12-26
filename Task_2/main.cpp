@@ -10,6 +10,7 @@ int main() {
     for (i = 0; i <= 78; i++) { 
         std::cout << "*";
     }
+    std::cout << std::endl;
     queue* LIST = NULL;
     while(true) {
         int var = console_func();

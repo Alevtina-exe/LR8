@@ -1,6 +1,7 @@
 #include "func.h"
 int size = 0;
 extern bool efile;
+extern int del_size;
 
 int console_func() { //Консольное меню
     std::cout << "Выберите действия из предложенного списка:\n" <<
@@ -19,24 +20,19 @@ int console_func() { //Консольное меню
 //Вспомогательные функции
 std::string par_choice(int npar) { //Ввод параметра по его номеру
     std::string par;
-    getchar();
     if(npar == 1) {
-        std::cout << "Введите порядковый номер (состоит только из букв и цифр):\n";
-        par = std::to_string(int_input());
-    }
-    else if(npar == 2) {
-        std::cout << "Введите фамилию (состоит только из букв и цифр):\n";
+        std::cout << "Введите фамилию:\n";
         par = name_input();
     }
+    else if(npar == 2) {
+        std::cout << "Введите имя:\n";
+        par = name_input();            
+    }
     else if(npar == 3) {
-        std::cout << "Введите имя (состоит из латиницы и цифр и не содержит пробелов):\n";
+        std::cout << "Введите отчество:\n";
         par = name_input();            
     }
     else if(npar == 4) {
-        std::cout << "Введите отчество (состоит только из букв):\n";
-        par = name_input();            
-    }
-    else if(npar == 5) {
         std::cout <<  "Введите дату постановки на учёт (формат: ДД.ММ.ГГГГ):\n";
         par = date_input();            
     }
@@ -51,24 +47,23 @@ std::string par_choice(int npar) { //Ввод параметра по его н�
     }
     return par;
 }
+
 int choose_npar() { //Выбор параметра
     std::cout << "Какой параметр вы хотите указать?\n" <<
-        "1. Порядковый номер.\n" <<
-        "2. Фамилия.\n" <<
-        "3. Имя.\n" <<
-        "4. Отчество.\n" <<
-        "5. Дата постановки на учёт.\n" <<
-        "6. Адрес.\n";
-    return int_input(1, 6);
-
+        "1. Фамилия.\n" <<
+        "2. Имя.\n" <<
+        "3. Отчество.\n" <<
+        "4. Дата постановки на учёт.\n" <<
+        "5. Адрес.\n";
+    return int_input(1, 5);
 }
+
 bool check(int npar, std::string par, queue& Q) { //Проверка совпадения поля структуры и параметра
-    if(npar == 1 && Q.num.str == par ||
-       npar == 2 && Q.surname == par || 
-       npar == 3 && Q.name == par || 
-       npar == 4 && Q.midname == par || 
-       npar == 5 && Q.date == par || 
-       npar == 6 && Q.address == par)
+    if(npar == 1 && Q.surname == par || 
+       npar == 2 && Q.name == par || 
+       npar == 3 && Q.midname == par || 
+       npar == 4 && Q.date == par || 
+       npar == 5 && Q.address == par)
     {
         return true;
     } 
@@ -190,11 +185,11 @@ queue* add_queues(queue* Q) {
         size++;
         std::cout << std::endl;
         queue_input(Q[size - 1], size);
-        std::cout << "Добавить ещё одну квитанцию? (1 - да, 2 - нет):\n";
+        std::cout << "Добавить ещё одну квитанцию? (1 - да, 0 - нет):\n";
         if(!int_input(0, 1)) {
             if(efile) { //Проверка записывались ли данные в файл
                 std::cout << "Внести изменения в бинарный файл? (1 - да, 0 - нет):\n";
-                if(int_input()) add_in_file(Q, n);
+                if(int_input(0, 1)) add_in_file(Q, n);
                 else efile = false;
             }
             std::cout << "Выход из режима добавления квитанций...\n\n";
@@ -208,47 +203,63 @@ void del_queue(queue* Q) {
         std::cout << "Список покупателей не инициализирован. Выход из режима удаления из списка...\n\n";
         return;
     }
-    std::cout << "Введите 1, чтобы просмотреть исходный список покупателей, или 0 в обратном случае:\n";
-    if(int_input(0,1)) {
-        std::cout << "Исходный список покупателей:\n\n";
-        show_queues(Q);
-    }
-    int npar = choose_npar();
-    std::string par = par_choice(npar); //Задаётся параметр
-    int* num = (int*)malloc(sizeof(int)), n = 0;
-    for(int i = 0; i < size; i++) {
-        if(check(npar, par, Q[i])) { //Соответствие параметру - название меняется на "*"
-            n++;
-            num = (int*)realloc(num, n * sizeof(int));
-            num[n - 1] = i; //Номера удаляемых покупателей
-            Q[i].surname[0] = '*'; Q[i].surname[1] = '\0';
+
+    std::cout << "Осуществить поиск с возможностью частичного совпаденния при помощи elasticsearch?\n" <<
+        "(1 - да, 0 - нет): ";
+    int* num;
+    bool el = int_input(0, 1);
+    if (el) {
+        num = elasticsearch_func(Q);
+        for(int i = 0; i < del_size; i++) {
+            Q[num[i] - 1].surname[0] = '*'; Q[num[i] - 1].surname[1] = '\0';
         }
     }
-    if(n) {
-        if(n == 1) {
-            std::cout << "Из списка был удалён покупатель с порядковым номером " << num[0] + 1;
+    else {
+        int npar = choose_npar();
+        std::string par = par_choice(npar); //Задаётся параметр
+        num = (int*)malloc(sizeof(int)); 
+        int n = 0;
+        for(int i = 0; i < size; i++) {
+            if(check(npar, par, Q[i])) { //Соответствие параметру - название меняется на "*"
+                n++;
+                num = (int*)realloc(num, n * sizeof(int));
+                num[n - 1] = i + 1; //Номера удаляемых покупателей
+                Q[i].surname[0] = '*'; Q[i].surname[1] = '\0';
+            }
+        }
+        del_size = n;
+    }
+    if(del_size) {
+        if(del_size == 1) {
+            std::cout << "Из списка был удалён покупатель с порядковым номером " << num[0];
         }
         else {
-            std::cout << "Из списка были удалены покупатели с порядковыми номерами " << num[0] + 1;
-            for(int i = 1; i < n; i++) std::cout << ", " << num[i] + 1;
+            std::cout << "Из списка были удалены покупатели с порядковыми номерами " << num[0];
+            for(int i = 1; i < del_size; i++) std::cout << ", " << num[i];
         }
         std::cout << ".\n";
-        for(int i = num[0]; i < size - n; i++) { //Удаление покупателей
-            if(!strcmp(Q[i].surname, "*")) {
+        for(int i = num[0] - 1; i < size - del_size; i++) { //Удаление покупателей
+            if(Q[i].surname[0] == '*') {
                 int j = i + 1;
-                while(!strcmp(Q[i].surname, "*")) {
+                while(!strcmp(Q[j].surname, "*")) {
                     j++;
                 }
                 std::swap(Q[i], Q[j]);
                 strcpy(Q[i].num.str, std::to_string(i + 1).c_str());
             }
         }
-        size -= n;
-        Q = (queue*)realloc(Q, size*sizeof(queue));
-        std::cout << "Изменённый список покупателей:\n\n";
-        show_queues(Q);
+        free(num);
+        size -= del_size;
+        Q = (queue*)realloc(Q, size * sizeof(queue));
+        if(size) {
+            std::cout << "Изменённый список покупателей:\n\n";
+            show_queues(Q);
+        }
+        del_size = 0;
     }
-    free(num);
+    else {
+        if(!el) std::cout << "Покупателей с заданным параметром не найдено!\n\n";
+    }
 }
 
 void change_queue(queue* Q) {
@@ -256,11 +267,7 @@ void change_queue(queue* Q) {
         std::cout << "Список покупателей не инициализирован. Выход из режима изменения списка...\n";
         return;
     }
-    std::cout << "Введите 1, чтобы просмотреть исходный список покупателей, или 0 в обратном случае:\n";
-    if(int_input(0,1)) {
-        std::cout << "Исходный список покупателей:\n\n";
-        show_queues(Q);
-    }
+
     bool change = false;
     int npar = choose_npar();
     std::string par = par_choice(npar); //Параметр который надо изменить
@@ -278,12 +285,11 @@ void change_queue(queue* Q) {
     std::cout << "Изменённые покупатели:\n";
     for(int i = 0; i < size; i++) { //Замена параметров, вывод изменённых клиентов
         if(check(npar, par, Q[i])) {
-            if(npar == 1) strcpy(Q[i].num.str, PAR.c_str());
-            else if(npar == 2) strcpy(Q[i].surname, PAR.c_str());
-            else if(npar == 3) strcpy(Q[i].name, PAR.c_str());
-            else if(npar == 4) strcpy(Q[i].midname, PAR.c_str());
-            else if(npar == 5) strcpy(Q[i].date, PAR.c_str());
-            else if(npar == 6) strcpy(Q[i].address, PAR.c_str());
+            if(npar == 1) strcpy(Q[i].surname, PAR.c_str());
+            else if(npar == 2) strcpy(Q[i].name, PAR.c_str());
+            else if(npar == 3) strcpy(Q[i].midname, PAR.c_str());
+            else if(npar == 4) strcpy(Q[i].date, PAR.c_str());
+            else if(npar == 5) strcpy(Q[i].address, PAR.c_str());
             queue_output(Q[i]);
         }
     }
@@ -319,7 +325,7 @@ void del_rep_queue(queue* Q) { //Удаление повторяющихся
         for(int i = num[0]; i < size - n; i++) {
             if(!strcmp(Q[i].surname, "*")) {
                 int j = i + 1;
-                while(!strcmp(Q[i].surname, "*")) {
+                while(!strcmp(Q[j].surname, "*")) {
                     j++;
                 }
                 std::swap(Q[i], Q[j]);
@@ -331,4 +337,5 @@ void del_rep_queue(queue* Q) { //Удаление повторяющихся
         std::cout << "Изменённый список покупателей:\n\n";
         show_queues(Q);
     }
+    free(num);
 } 
