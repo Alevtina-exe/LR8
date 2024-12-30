@@ -16,6 +16,7 @@ std::string device_name_input(bool name);
 std::string serial_num_input();
 std::string date_input();
 
+void autocomplete(quittance* Q, int n);
 void quitt_input(quittance& Q);
 void quitt_output(quittance& Q);
 

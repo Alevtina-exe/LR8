@@ -129,77 +129,29 @@ Task_1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/build
 .PHONY : Task_1/fast
 
-elasticsearch.o: elasticsearch.cpp.o
-.PHONY : elasticsearch.o
+functions.o: functions.cpp.o
+.PHONY : functions.o
 
 # target to build an object file
-elasticsearch.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/elasticsearch.cpp.o
-.PHONY : elasticsearch.cpp.o
+functions.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/functions.cpp.o
+.PHONY : functions.cpp.o
 
-elasticsearch.i: elasticsearch.cpp.i
-.PHONY : elasticsearch.i
-
-# target to preprocess a source file
-elasticsearch.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/elasticsearch.cpp.i
-.PHONY : elasticsearch.cpp.i
-
-elasticsearch.s: elasticsearch.cpp.s
-.PHONY : elasticsearch.s
-
-# target to generate assembly for a file
-elasticsearch.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/elasticsearch.cpp.s
-.PHONY : elasticsearch.cpp.s
-
-filework.o: filework.cpp.o
-.PHONY : filework.o
-
-# target to build an object file
-filework.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/filework.cpp.o
-.PHONY : filework.cpp.o
-
-filework.i: filework.cpp.i
-.PHONY : filework.i
+functions.i: functions.cpp.i
+.PHONY : functions.i
 
 # target to preprocess a source file
-filework.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/filework.cpp.i
-.PHONY : filework.cpp.i
+functions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/functions.cpp.i
+.PHONY : functions.cpp.i
 
-filework.s: filework.cpp.s
-.PHONY : filework.s
-
-# target to generate assembly for a file
-filework.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/filework.cpp.s
-.PHONY : filework.cpp.s
-
-ivalidation.o: ivalidation.cpp.o
-.PHONY : ivalidation.o
-
-# target to build an object file
-ivalidation.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/ivalidation.cpp.o
-.PHONY : ivalidation.cpp.o
-
-ivalidation.i: ivalidation.cpp.i
-.PHONY : ivalidation.i
-
-# target to preprocess a source file
-ivalidation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/ivalidation.cpp.i
-.PHONY : ivalidation.cpp.i
-
-ivalidation.s: ivalidation.cpp.s
-.PHONY : ivalidation.s
+functions.s: functions.cpp.s
+.PHONY : functions.s
 
 # target to generate assembly for a file
-ivalidation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/ivalidation.cpp.s
-.PHONY : ivalidation.cpp.s
+functions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/functions.cpp.s
+.PHONY : functions.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -225,30 +177,6 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-struct_funcs.o: struct_funcs.cpp.o
-.PHONY : struct_funcs.o
-
-# target to build an object file
-struct_funcs.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/struct_funcs.cpp.o
-.PHONY : struct_funcs.cpp.o
-
-struct_funcs.i: struct_funcs.cpp.i
-.PHONY : struct_funcs.i
-
-# target to preprocess a source file
-struct_funcs.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/struct_funcs.cpp.i
-.PHONY : struct_funcs.cpp.i
-
-struct_funcs.s: struct_funcs.cpp.s
-.PHONY : struct_funcs.s
-
-# target to generate assembly for a file
-struct_funcs.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/struct_funcs.cpp.s
-.PHONY : struct_funcs.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -258,21 +186,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Task_1"
-	@echo "... elasticsearch.o"
-	@echo "... elasticsearch.i"
-	@echo "... elasticsearch.s"
-	@echo "... filework.o"
-	@echo "... filework.i"
-	@echo "... filework.s"
-	@echo "... ivalidation.o"
-	@echo "... ivalidation.i"
-	@echo "... ivalidation.s"
+	@echo "... functions.o"
+	@echo "... functions.i"
+	@echo "... functions.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... struct_funcs.o"
-	@echo "... struct_funcs.i"
-	@echo "... struct_funcs.s"
 .PHONY : help
 
 

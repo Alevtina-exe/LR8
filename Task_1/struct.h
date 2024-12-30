@@ -7,7 +7,7 @@
 #include <algorithm>
 
 extern int size;
-extern bool efile, file;
+extern bool file, efile;
 
 typedef struct quittance {
     char device[200];

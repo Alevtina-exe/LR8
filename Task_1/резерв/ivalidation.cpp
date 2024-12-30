@@ -1,6 +1,4 @@
-#include <string.h>
 #include "func.h"
-#include <algorithm>
 
 int int_input(int min, int max) { //Ввод целого числа с ограничениями
     int a;

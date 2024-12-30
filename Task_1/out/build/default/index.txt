@@ -65,3 +65,76 @@ curl -X PUT "http://localhost:9200/quittance" -H 'Content-Type: application/json
 }'
 
 curl -X DELETE "http://localhost:9200/quittance"
+
+curl -X PUT "http://localhost:9200/quittance" -H 'Content-Type: application/json' -d'
+{
+  "settings": {
+    "analysis": {
+      "filter": {
+        "russian_stop": {
+          "type": "stop",
+          "stopwords": "_russian_"
+        },
+        "russian_stemmer": {
+          "type": "stemmer",
+          "name": "russian"
+        }
+      },
+      "char_filter": {
+        "length_filter": {
+          "type": "pattern_replace",
+          "pattern": "^(.{4,})",
+          "replacement": "$1"
+        }
+      },
+      "analyzer": {
+        "russian_analyzer": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "russian_stop",
+            "russian_stemmer"
+          ],
+          "char_filter": [
+            "length_filter"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "num": {
+        "type": "long"
+      },
+      "device": {
+        "type": "text",
+        "analyzer": "russian_analyzer",
+        "search_analyzer": "russian_analyzer"
+      },
+      "serial_num": {
+        "type": "text",
+        "analyzer": "russian_analyzer",
+        "search_analyzer": "russian_analyzer"
+      },
+      "name": {
+        "type": "text",
+        "analyzer": "russian_analyzer",
+        "search_analyzer": "russian_analyzer"
+      },
+      "date": {
+        "type": "date"
+      },
+      "status": {
+        "type": "boolean"
+      },
+      "date_txt": {
+        "type": "text",
+        "analyzer": "russian_analyzer",
+        "search_analyzer": "russian_analyzer"
+      }
+    }
+  }
+}'
+

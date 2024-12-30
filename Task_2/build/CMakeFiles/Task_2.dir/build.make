@@ -69,52 +69,24 @@ include CMakeFiles/Task_2.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Task_2.dir/flags.make
 
-CMakeFiles/Task_2.dir/elasticsearch.cpp.o: CMakeFiles/Task_2.dir/flags.make
-CMakeFiles/Task_2.dir/elasticsearch.cpp.o: /home/darya/Документы/453502/ОАиП/LR8/Task_2/elasticsearch.cpp
-CMakeFiles/Task_2.dir/elasticsearch.cpp.o: CMakeFiles/Task_2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/darya/Документы/453502/ОАиП/LR8/Task_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Task_2.dir/elasticsearch.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Task_2.dir/elasticsearch.cpp.o -MF CMakeFiles/Task_2.dir/elasticsearch.cpp.o.d -o CMakeFiles/Task_2.dir/elasticsearch.cpp.o -c /home/darya/Документы/453502/ОАиП/LR8/Task_2/elasticsearch.cpp
+CMakeFiles/Task_2.dir/functions.cpp.o: CMakeFiles/Task_2.dir/flags.make
+CMakeFiles/Task_2.dir/functions.cpp.o: /home/darya/Документы/453502/ОАиП/LR8/Task_2/functions.cpp
+CMakeFiles/Task_2.dir/functions.cpp.o: CMakeFiles/Task_2.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/darya/Документы/453502/ОАиП/LR8/Task_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Task_2.dir/functions.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Task_2.dir/functions.cpp.o -MF CMakeFiles/Task_2.dir/functions.cpp.o.d -o CMakeFiles/Task_2.dir/functions.cpp.o -c /home/darya/Документы/453502/ОАиП/LR8/Task_2/functions.cpp
 
-CMakeFiles/Task_2.dir/elasticsearch.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Task_2.dir/elasticsearch.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/darya/Документы/453502/ОАиП/LR8/Task_2/elasticsearch.cpp > CMakeFiles/Task_2.dir/elasticsearch.cpp.i
+CMakeFiles/Task_2.dir/functions.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Task_2.dir/functions.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/darya/Документы/453502/ОАиП/LR8/Task_2/functions.cpp > CMakeFiles/Task_2.dir/functions.cpp.i
 
-CMakeFiles/Task_2.dir/elasticsearch.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Task_2.dir/elasticsearch.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/darya/Документы/453502/ОАиП/LR8/Task_2/elasticsearch.cpp -o CMakeFiles/Task_2.dir/elasticsearch.cpp.s
-
-CMakeFiles/Task_2.dir/filework.cpp.o: CMakeFiles/Task_2.dir/flags.make
-CMakeFiles/Task_2.dir/filework.cpp.o: /home/darya/Документы/453502/ОАиП/LR8/Task_2/filework.cpp
-CMakeFiles/Task_2.dir/filework.cpp.o: CMakeFiles/Task_2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/darya/Документы/453502/ОАиП/LR8/Task_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Task_2.dir/filework.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Task_2.dir/filework.cpp.o -MF CMakeFiles/Task_2.dir/filework.cpp.o.d -o CMakeFiles/Task_2.dir/filework.cpp.o -c /home/darya/Документы/453502/ОАиП/LR8/Task_2/filework.cpp
-
-CMakeFiles/Task_2.dir/filework.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Task_2.dir/filework.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/darya/Документы/453502/ОАиП/LR8/Task_2/filework.cpp > CMakeFiles/Task_2.dir/filework.cpp.i
-
-CMakeFiles/Task_2.dir/filework.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Task_2.dir/filework.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/darya/Документы/453502/ОАиП/LR8/Task_2/filework.cpp -o CMakeFiles/Task_2.dir/filework.cpp.s
-
-CMakeFiles/Task_2.dir/ivalidation.cpp.o: CMakeFiles/Task_2.dir/flags.make
-CMakeFiles/Task_2.dir/ivalidation.cpp.o: /home/darya/Документы/453502/ОАиП/LR8/Task_2/ivalidation.cpp
-CMakeFiles/Task_2.dir/ivalidation.cpp.o: CMakeFiles/Task_2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/darya/Документы/453502/ОАиП/LR8/Task_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Task_2.dir/ivalidation.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Task_2.dir/ivalidation.cpp.o -MF CMakeFiles/Task_2.dir/ivalidation.cpp.o.d -o CMakeFiles/Task_2.dir/ivalidation.cpp.o -c /home/darya/Документы/453502/ОАиП/LR8/Task_2/ivalidation.cpp
-
-CMakeFiles/Task_2.dir/ivalidation.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Task_2.dir/ivalidation.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/darya/Документы/453502/ОАиП/LR8/Task_2/ivalidation.cpp > CMakeFiles/Task_2.dir/ivalidation.cpp.i
-
-CMakeFiles/Task_2.dir/ivalidation.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Task_2.dir/ivalidation.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/darya/Документы/453502/ОАиП/LR8/Task_2/ivalidation.cpp -o CMakeFiles/Task_2.dir/ivalidation.cpp.s
+CMakeFiles/Task_2.dir/functions.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Task_2.dir/functions.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/darya/Документы/453502/ОАиП/LR8/Task_2/functions.cpp -o CMakeFiles/Task_2.dir/functions.cpp.s
 
 CMakeFiles/Task_2.dir/main.cpp.o: CMakeFiles/Task_2.dir/flags.make
 CMakeFiles/Task_2.dir/main.cpp.o: /home/darya/Документы/453502/ОАиП/LR8/Task_2/main.cpp
 CMakeFiles/Task_2.dir/main.cpp.o: CMakeFiles/Task_2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/darya/Документы/453502/ОАиП/LR8/Task_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Task_2.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/darya/Документы/453502/ОАиП/LR8/Task_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Task_2.dir/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Task_2.dir/main.cpp.o -MF CMakeFiles/Task_2.dir/main.cpp.o.d -o CMakeFiles/Task_2.dir/main.cpp.o -c /home/darya/Документы/453502/ОАиП/LR8/Task_2/main.cpp
 
 CMakeFiles/Task_2.dir/main.cpp.i: cmake_force
@@ -125,40 +97,20 @@ CMakeFiles/Task_2.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Task_2.dir/main.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/darya/Документы/453502/ОАиП/LR8/Task_2/main.cpp -o CMakeFiles/Task_2.dir/main.cpp.s
 
-CMakeFiles/Task_2.dir/struct_funcs.cpp.o: CMakeFiles/Task_2.dir/flags.make
-CMakeFiles/Task_2.dir/struct_funcs.cpp.o: /home/darya/Документы/453502/ОАиП/LR8/Task_2/struct_funcs.cpp
-CMakeFiles/Task_2.dir/struct_funcs.cpp.o: CMakeFiles/Task_2.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/darya/Документы/453502/ОАиП/LR8/Task_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Task_2.dir/struct_funcs.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Task_2.dir/struct_funcs.cpp.o -MF CMakeFiles/Task_2.dir/struct_funcs.cpp.o.d -o CMakeFiles/Task_2.dir/struct_funcs.cpp.o -c /home/darya/Документы/453502/ОАиП/LR8/Task_2/struct_funcs.cpp
-
-CMakeFiles/Task_2.dir/struct_funcs.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Task_2.dir/struct_funcs.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/darya/Документы/453502/ОАиП/LR8/Task_2/struct_funcs.cpp > CMakeFiles/Task_2.dir/struct_funcs.cpp.i
-
-CMakeFiles/Task_2.dir/struct_funcs.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Task_2.dir/struct_funcs.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/darya/Документы/453502/ОАиП/LR8/Task_2/struct_funcs.cpp -o CMakeFiles/Task_2.dir/struct_funcs.cpp.s
-
 # Object files for target Task_2
 Task_2_OBJECTS = \
-"CMakeFiles/Task_2.dir/elasticsearch.cpp.o" \
-"CMakeFiles/Task_2.dir/filework.cpp.o" \
-"CMakeFiles/Task_2.dir/ivalidation.cpp.o" \
-"CMakeFiles/Task_2.dir/main.cpp.o" \
-"CMakeFiles/Task_2.dir/struct_funcs.cpp.o"
+"CMakeFiles/Task_2.dir/functions.cpp.o" \
+"CMakeFiles/Task_2.dir/main.cpp.o"
 
 # External object files for target Task_2
 Task_2_EXTERNAL_OBJECTS =
 
-Task_2: CMakeFiles/Task_2.dir/elasticsearch.cpp.o
-Task_2: CMakeFiles/Task_2.dir/filework.cpp.o
-Task_2: CMakeFiles/Task_2.dir/ivalidation.cpp.o
+Task_2: CMakeFiles/Task_2.dir/functions.cpp.o
 Task_2: CMakeFiles/Task_2.dir/main.cpp.o
-Task_2: CMakeFiles/Task_2.dir/struct_funcs.cpp.o
 Task_2: CMakeFiles/Task_2.dir/build.make
 Task_2: /usr/lib/x86_64-linux-gnu/libcurl.so
 Task_2: CMakeFiles/Task_2.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/darya/Документы/453502/ОАиП/LR8/Task_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Task_2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/darya/Документы/453502/ОАиП/LR8/Task_2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Task_2"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Task_2.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

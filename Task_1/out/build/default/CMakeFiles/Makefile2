@@ -81,12 +81,12 @@ clean: CMakeFiles/Task_1.dir/clean
 CMakeFiles/Task_1.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Task_1.dir/build.make CMakeFiles/Task_1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/darya/Документы/453502/ОАиП/LR8/Task_1/out/build/default/CMakeFiles --progress-num=1,2,3,4,5,6 "Built target Task_1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/darya/Документы/453502/ОАиП/LR8/Task_1/out/build/default/CMakeFiles --progress-num=1,2,3 "Built target Task_1"
 .PHONY : CMakeFiles/Task_1.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Task_1.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/darya/Документы/453502/ОАиП/LR8/Task_1/out/build/default/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/darya/Документы/453502/ОАиП/LR8/Task_1/out/build/default/CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Task_1.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/darya/Документы/453502/ОАиП/LR8/Task_1/out/build/default/CMakeFiles 0
 .PHONY : CMakeFiles/Task_1.dir/rule

@@ -7,6 +7,12 @@ curl -X PUT "http://localhost:9200/queue" -H 'Content-Type: application/json' -d
       "max_ngram_diff": 19
     },
     "analysis": {
+      "filter": {
+        "russian_stemmer": {
+          "type": "stemmer",
+          "language": "russian"
+        }
+      },
       "tokenizer": {
         "ngram_tokenizer": {
           "type": "ngram",
@@ -23,7 +29,8 @@ curl -X PUT "http://localhost:9200/queue" -H 'Content-Type: application/json' -d
           "type": "custom",
           "tokenizer": "ngram_tokenizer",
           "filter": [
-            "lowercase"
+            "lowercase",
+            "russian_stemmer"
           ]
         }
       }
@@ -71,5 +78,157 @@ curl -X PUT "http://localhost:9200/queue" -H 'Content-Type: application/json' -d
   }
 }'
 
-
 curl -X DELETE "http://localhost:9200/queue"
+
+curl -X PUT "http://localhost:9200/queue" -H 'Content-Type: application/json' -d'
+{
+  "settings": {
+    "index": {
+      "max_ngram_diff": 19
+    },
+    "analysis": {
+      "filter": {
+        "russian_stop": {
+          "type": "stop",
+          "stopwords": "_russian_"
+        },
+        "russian_stemmer": {
+          "type": "stemmer",
+          "name": "russian"
+        }
+      },
+      "analyzer": {
+        "russian_analyzer": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "russian_stop",
+            "russian_stemmer"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "num": {
+        "type": "long"
+      },
+      "surname": {
+        "type": "text",
+        "analyzer": "russian_analyzer",
+        "search_analyzer": "russian_analyzer"
+      },
+      "name": {
+        "type": "text",
+        "analyzer": "russian_analyzer",
+        "search_analyzer": "russian_analyzer"
+      },
+      "midname": {
+        "type": "text",
+        "analyzer": "russian_analyzer",
+        "search_analyzer": "russian_analyzer"
+      },
+      "date": {
+        "type": "date"
+      },
+      "address": {
+        "type": "text",
+        "analyzer": "russian_analyzer",
+        "search_analyzer": "russian_analyzer"
+      },
+      "num_txt": {
+        "type": "text",
+        "analyzer": "russian_analyzer",
+        "search_analyzer": "russian_analyzer"
+      },
+      "date_txt": {
+        "type": "text",
+        "analyzer": "russian_analyzer",
+        "search_analyzer": "russian_analyzer"
+      }
+    }
+  }
+}'
+
+curl -X PUT "http://localhost:9200/queue" -H 'Content-Type: application/json' -d'
+{
+  "settings": {
+    "analysis": {
+      "filter": {
+        "russian_stop": {
+          "type": "stop",
+          "stopwords": "_russian_"
+        },
+        "russian_stemmer": {
+          "type": "stemmer",
+          "name": "russian"
+        }
+      },
+      "char_filter": {
+        "length_filter": {
+          "type": "pattern_replace",
+          "pattern": "^(.{4,})",
+          "replacement": "$1"
+        }
+      },
+      "analyzer": {
+        "russian_analyzer": {
+          "type": "custom",
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "russian_stop",
+            "russian_stemmer"
+          ],
+          "char_filter": [
+            "length_filter"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "num": {
+        "type": "long"
+      },
+      "surname": {
+        "type": "text",
+        "analyzer": "russian_analyzer",
+        "search_analyzer": "russian_analyzer"
+      },
+      "name": {
+        "type": "text",
+        "analyzer": "russian_analyzer",
+        "search_analyzer": "russian_analyzer"
+      },
+      "midname": {
+        "type": "text",
+        "analyzer": "russian_analyzer",
+        "search_analyzer": "russian_analyzer"
+      },
+      "date": {
+        "type": "date"
+      },
+      "address": {
+        "type": "text",
+        "analyzer": "russian_analyzer",
+        "search_analyzer": "russian_analyzer"
+      },
+      "num_txt": {
+        "type": "text",
+        "analyzer": "russian_analyzer",
+        "search_analyzer": "russian_analyzer"
+      },
+      "date_txt": {
+        "type": "text",
+        "analyzer": "russian_analyzer",
+        "search_analyzer": "russian_analyzer"
+      }
+    }
+  }
+}'
+
+

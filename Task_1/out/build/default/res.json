@@ -1,17 +1,9 @@
-{"took":2,"timed_out":false,"_shards":{"total":1,"successful":1,"skipped":0,"failed":0},"hits":{"total":{"value":2,"relation":"eq"},"max_score":0.7716329,"hits":[{"_index":"quittance","_type":"_doc","_id":"1","_score":0.7716329,"_source":{
-    "device": "хуета2",
-    "num": 1,
-    "serial_num": "3343433",
-    "name": "биба",
-    "date": "2020-10-12",
-    "status": false,
-    "date_txt": "12.10.2020"
-}},{"_index":"quittance","_type":"_doc","_id":"2","_score":0.6005187,"_source":{
-    "device": "хуета1",
+{"took":7,"timed_out":false,"_shards":{"total":1,"successful":1,"skipped":0,"failed":0},"hits":{"total":{"value":1,"relation":"eq"},"max_score":0.80088043,"hits":[{"_index":"quittance","_type":"_doc","_id":"2","_score":0.80088043,"_source":{
+    "device": "лошь",
     "num": 2,
-    "serial_num": "123321",
-    "name": "пиздина",
-    "date": "1111-11-11",
+    "serial_num": "123",
+    "name": "лошка",
+    "date": "1212-12-12",
     "status": true,
-    "date_txt": "11.11.1111"
+    "date_txt": "12.12.1212"
 }}]}}
